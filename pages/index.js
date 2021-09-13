@@ -3,9 +3,15 @@ import InputField from '@/components/InputField';
 import ProfileCard from '@/components/ProfileCard';
 import Head from 'next/head';
 
-export default function Home() {
-  function onSearch(enteredQuery) {
-    console.log(enteredQuery);
+function Home(props) {
+  let param;
+  async function onSearch(enteredQuery) {
+    // console.log(enteredQuery);
+    const response = await fetch(
+      `https://api.github.com/users/${enteredQuery}`
+    );
+    const data = await response.json();
+    console.log(data);
   }
 
   return (
@@ -25,8 +31,21 @@ export default function Home() {
         <InputField trigger={onSearch} />
 
         {/* Profile Card */}
-        <ProfileCard />
+        {!param && <ProfileCard data={props.devData} />}
       </main>
     </div>
   );
 }
+
+export async function getStaticProps() {
+  const response = await fetch('https://api.github.com/users/geobrodas');
+  const data = await response.json();
+
+  return {
+    props: {
+      devData: data,
+    },
+  };
+}
+
+export default Home;
