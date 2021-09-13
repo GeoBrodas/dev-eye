@@ -2,17 +2,22 @@ import HeaderBar from '@/components/HeaderBar';
 import InputField from '@/components/InputField';
 import ProfileCard from '@/components/ProfileCard';
 import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 function Home(props) {
   let param;
+
   async function onSearch(enteredQuery) {
     // console.log(enteredQuery);
     const response = await fetch(
       `https://api.github.com/users/${enteredQuery}`
     );
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
+    param = data;
+    console.log(param);
   }
+  console.log(param, 2);
 
   return (
     <div>
@@ -31,7 +36,7 @@ function Home(props) {
         <InputField trigger={onSearch} />
 
         {/* Profile Card */}
-        {!param && <ProfileCard data={props.devData} />}
+        <ProfileCard data={param ? param : props.devData} />
       </main>
     </div>
   );
