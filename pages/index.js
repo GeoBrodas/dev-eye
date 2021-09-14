@@ -2,22 +2,24 @@ import HeaderBar from '@/components/HeaderBar';
 import InputField from '@/components/InputField';
 import ProfileCard from '@/components/ProfileCard';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import Skeleton from 'react-loading-skeleton';
 
 function Home(props) {
-  let param;
+  const [userData, setUserData] = useState(props.devData);
+  const [loading, setLoading] = useState(false);
 
   async function onSearch(enteredQuery) {
-    // console.log(enteredQuery);
+    setLoading(true);
+
     const response = await fetch(
       `https://api.github.com/users/${enteredQuery}`
     );
     const data = await response.json();
-    // console.log(data);
-    param = data;
-    console.log(param);
+    setUserData(data);
+    setLoading(false);
   }
-  console.log(param, 2);
 
   return (
     <div>
@@ -36,7 +38,12 @@ function Home(props) {
         <InputField trigger={onSearch} />
 
         {/* Profile Card */}
-        <ProfileCard data={param ? param : props.devData} />
+        {loading ? (
+          <p className="mt-10 text-lg">Loading...</p>
+        ) : (
+          <ProfileCard data={userData} />
+        )}
+        {!userData.name && !loading && 'No user found!'}
       </main>
     </div>
   );

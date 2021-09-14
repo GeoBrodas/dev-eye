@@ -1,10 +1,15 @@
 import { convertFromISO } from '@/helpers/time';
 import Image from 'next/image';
+import Link from 'next/link';
 
-import { LocationMarkerIcon, AtSymbolIcon } from '@heroicons/react/outline';
+import {
+  LocationMarkerIcon,
+  AtSymbolIcon,
+  RssIcon,
+  BriefcaseIcon,
+} from '@heroicons/react/outline';
 
 function ProfileCard({ data }) {
-  // console.log(data);
   // pullout all data from the recieved props from getstaticProps
   const {
     name,
@@ -24,19 +29,22 @@ function ProfileCard({ data }) {
   const formattedDate = convertFromISO(created_at);
 
   return (
-    <div className="flex w-3/4 justify-around mt-6 p-2 bg-pink-300 rounded-xl">
+    <div className="flex w-3/4 justify-around mt-6 px-2 pb-3 bg-pink-300 rounded-xl">
       <div className="grid flex-grow place-items-center">
         <Image
           className="rounded-full"
           alt={data.name}
-          src={data.avatar_url}
+          src={
+            data.avatar_url ||
+            'https://avatars.githubusercontent.com/u/583231?v=4'
+          }
           width={100}
           height={100}
           layout="fixed"
         />
       </div>
 
-      <div className="flex flex-col w-3/5">
+      <div className="flex flex-col w-3/5 pr-2">
         {/* determining the width is a skill! */}
         {/* Name | Date of Joining */}
         <div className="flex justify-between p-2">
@@ -73,26 +81,43 @@ function ProfileCard({ data }) {
         </div>
 
         {/* Location | Twiiter */}
-        <div className="flex mt-2 px-2 justify-between ">
+        <div className="flex text-pink-900 mt-2 px-2 justify-between ">
           <div className="flex">
             <LocationMarkerIcon className="h-6" />
             <p>{location}</p>
+            {!location && 'No location found'}
           </div>
           <div className="flex">
             <AtSymbolIcon className="h-6" />
-            <p>{twitter_username}</p>
+            <Link
+              href={
+                `https://twitter.com/${twitter_username}` ||
+                'https://georgey.codes'
+              }
+            >
+              <a>
+                <p>{twitter_username}</p>
+              </a>
+            </Link>
+            {!twitter_username && 'No socials'}
           </div>
         </div>
 
         {/* Site | Workplace */}
-        <div className="flex mt-2 px-2 justify-between ">
+        <div className="flex text-pink-900 mt-2 px-2 justify-between ">
           <div className="flex">
-            <LocationMarkerIcon className="h-6" />
-            <p>{blog}</p>
+            <RssIcon className="h-6" />
+            <Link href={blog || 'https://georgey.codes'}>
+              <a>
+                <p>{blog}</p>
+              </a>
+            </Link>
+            {!blog && 'No blog link'}
           </div>
           <div className="flex">
-            <AtSymbolIcon className="h-6" />
+            <BriefcaseIcon className="h-6" />
             <p>{company}</p>
+            {!company && 'Field is blank'}
           </div>
         </div>
       </div>
