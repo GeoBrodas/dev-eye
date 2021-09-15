@@ -29,8 +29,8 @@ function ProfileCard({ data }) {
   const formattedDate = convertFromISO(created_at);
 
   return (
-    <div className="flex w-3/4 justify-around mt-6 px-2 pb-3 bg-pink-300 rounded-xl">
-      <div className="grid flex-grow place-items-center">
+    <div className="flex flex-col sm:flex-row justify-around sm:w-3/4 md:w-7/12 mt-6 px-2 pb-3 bg-pink-300 rounded-xl">
+      <div className="grid flex-grow place-items-center mt-4 sm:mt-0">
         <Image
           className="rounded-full"
           alt={data.name}
@@ -38,57 +38,65 @@ function ProfileCard({ data }) {
             data.avatar_url ||
             'https://avatars.githubusercontent.com/u/583231?v=4'
           }
-          width={100}
-          height={100}
+          width={150}
+          height={150}
           layout="fixed"
         />
       </div>
 
-      <div className="flex flex-col w-3/5 pr-2">
+      <div className="flex text-center flex-col w-60 md:w-80 pr-2">
         {/* determining the width is a skill! */}
         {/* Name | Date of Joining */}
         <div className="flex justify-between p-2">
-          <span className="text-3xl text-pink-900">{name}</span>
-          <span className="font-normal p-1 text-pink-900">
+          <span className="text-lg sm:text-xl md:text-3xl text-pink-900">
+            {name}
+          </span>
+          <span className="font-normal text-xs sm:text-md md:text-lg p-1 text-pink-900">
             Joined {formattedDate}
           </span>
         </div>
 
         {/* username */}
-        <p className="pt-2 pl-2 text-pink-600">@{login}</p>
+        <p className="pt-1 md:pt-2 pl-2 text-pink-600">@{login}</p>
 
         {/* Bio */}
         {bio ? (
-          <p className="pt-2 pl-2 text-pink-900">{bio}</p>
+          <p className="pt-1 md:pt-2 text-sm sm:text-base pl-2 text-pink-900">
+            {bio}
+          </p>
         ) : (
           'NO bio found'
         )}
 
         {/* Card: Repos | Followers | Following */}
         <div className="flex mt-2.5 rounded-lg justify-around p-1 bg-pink-900 text-pink-300">
-          <span className="p-2">
-            <p className="text-lg font-medium">Repos</p>
+          <span className="p-1 md:p-2">
+            <p className="text-sm sm:text-base md:text-lg font-medium">Repos</p>
             {public_repos}
           </span>
-          <span className="p-2">
-            <p className="text-lg font-medium">Followers</p>
+          <span className="p-1 md:p-2">
+            <p className="text-sm sm:text-base md:text-lg font-medium">
+              Followers
+            </p>
             {followers}
           </span>
-          <span className="p-2">
-            <p className="text-lg font-medium">Following</p>
+          <span className="p-1 md:p-2">
+            <p className="text-sm sm:text-base md:text-lg font-medium">
+              Following
+            </p>
             {following}
           </span>
         </div>
 
         {/* Location | Twiiter */}
-        <div className="flex text-pink-900 mt-2 px-2 justify-between ">
+        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 mt-2 px-2 justify-between ">
           <div className="flex">
-            <LocationMarkerIcon className="h-6" />
+            <LocationMarkerIcon className="h-4 md:h-6" />
             <p>{location}</p>
             {!location && 'No location found'}
           </div>
           <div className="flex">
-            <AtSymbolIcon className="h-6" />
+            <AtSymbolIcon className="h-4 md:h-6" />
             <Link
               href={
                 `https://twitter.com/${twitter_username}` ||
@@ -104,19 +112,19 @@ function ProfileCard({ data }) {
         </div>
 
         {/* Site | Workplace */}
-        <div className="flex text-pink-900 mt-2 px-2 justify-between ">
+        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 mt-2 px-2 justify-between ">
           <div className="flex">
-            <RssIcon className="h-6" />
+            <RssIcon className="h-4 md:h-6" />
             <Link href={blog || 'https://georgey.codes'}>
               <a>
-                <p>{blog}</p>
+                <p className="truncate">{blog}</p>
               </a>
             </Link>
             {!blog && 'No blog link'}
           </div>
           <div className="flex">
-            <BriefcaseIcon className="h-6" />
-            <p>{company}</p>
+            <BriefcaseIcon className="h-4 md:h-6" />
+            <p className="whitespace-nowrap">{company}</p>
             {!company && 'Field is blank'}
           </div>
         </div>
