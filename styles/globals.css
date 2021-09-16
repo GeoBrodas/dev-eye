@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-pink-900 text-gray-300 dark:bg-pink-100 dark:text-pink-900;
+    @apply bg-pink-900 text-gray-300 dark:bg-pink-300 dark:text-pink-900;
   }
 }

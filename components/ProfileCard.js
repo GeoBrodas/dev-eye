@@ -71,7 +71,7 @@ function ProfileCard({ data }) {
         )}
 
         {/* Card: Repos | Followers | Following */}
-        <div className="flex mt-2.5 rounded-lg justify-around p-1 bg-pink-900 dark:bg-pink-50 text-pink-300 dark:text-pink-900">
+        <div className="flex mt-2.5 rounded-lg justify-around p-1 bg-pink-900 dark:bg-pink-300 text-pink-300 dark:text-pink-900">
           <span className="p-1 md:p-2">
             <p className="text-sm sm:text-base md:text-lg font-medium">Repos</p>
             {public_repos}

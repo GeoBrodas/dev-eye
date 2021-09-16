@@ -22,7 +22,7 @@ function InputField(props) {
       <input
         ref={enteredQuery}
         placeholder="Search Dev"
-        className="outline-none text-sm md:text-base flex-grow placeholder-pink-900 dark:placeholder-pink-50 bg-transparent"
+        className="outline-none text-sm md:text-base flex-grow placeholder-pink-900 dark:placeholder-pink-50 dark:text-pink-50 bg-transparent"
       />
       <button
         onClick={onSearch}
