@@ -38,13 +38,13 @@ function ProfileCard({ data }) {
             data.avatar_url ||
             'https://avatars.githubusercontent.com/u/583231?v=4'
           }
-          width={150}
-          height={150}
+          width={140}
+          height={140}
           layout="fixed"
         />
       </div>
 
-      <div className="flex flex-grow flex-col w-60 md:w-80 pr-2">
+      <div className="flex flex-grow flex-col w-60 md:w-80 sm:pl-1 md:pl-2 pr-2">
         {/* determining the width is a skill! */}
         {/* Name | Date of Joining */}
         <div className="flex justify-between p-2">
