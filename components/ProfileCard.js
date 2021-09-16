@@ -29,7 +29,7 @@ function ProfileCard({ data }) {
   const formattedDate = convertFromISO(created_at);
 
   return (
-    <div className="flex flex-col sm:flex-row justify-around sm:w-3/4 md:w-7/12 mt-6 px-2 pb-3 bg-pink-300 rounded-xl">
+    <div className="flex flex-col sm:flex-row justify-around sm:w-3/4 md:w-7/12 mt-6 px-2 pb-3 bg-pink-300 dark:bg-pink-900 rounded-xl">
       <div className="grid place-items-center md:w-96 mt-4 sm:mt-0">
         <Image
           className="rounded-full"
@@ -48,20 +48,22 @@ function ProfileCard({ data }) {
         {/* determining the width is a skill! */}
         {/* Name | Date of Joining */}
         <div className="flex justify-between p-2">
-          <span className="text-lg sm:text-xl md:text-3xl text-pink-900">
+          <span className="text-lg sm:text-xl md:text-3xl text-pink-900 dark:text-pink-50">
             {name}
           </span>
-          <span className="font-normal text-xs sm:text-md md:text-lg p-1 text-pink-900">
+          <span className="font-normal text-xs sm:text-md md:text-lg p-1 text-pink-900 dark:text-pink-50">
             Joined {formattedDate}
           </span>
         </div>
 
         {/* username */}
-        <p className="pt-1 md:pt-2 pl-2 text-pink-600">@{login}</p>
+        <p className="pt-1 md:pt-2 pl-2 text-pink-600 dark:text-pink-50">
+          @{login}
+        </p>
 
         {/* Bio */}
         {bio ? (
-          <p className="pt-1 md:pt-2 text-sm sm:text-base pl-2 text-pink-900">
+          <p className="pt-1 md:pt-2 text-sm sm:text-base pl-2 text-pink-900 dark:text-pink-50">
             {bio}
           </p>
         ) : (
@@ -69,7 +71,7 @@ function ProfileCard({ data }) {
         )}
 
         {/* Card: Repos | Followers | Following */}
-        <div className="flex mt-2.5 rounded-lg justify-around p-1 bg-pink-900 text-pink-300">
+        <div className="flex mt-2.5 rounded-lg justify-around p-1 bg-pink-900 dark:bg-pink-50 text-pink-300 dark:text-pink-900">
           <span className="p-1 md:p-2">
             <p className="text-sm sm:text-base md:text-lg font-medium">Repos</p>
             {public_repos}
@@ -89,7 +91,7 @@ function ProfileCard({ data }) {
         </div>
 
         {/* Location | Twiiter */}
-        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 mt-2 px-2 justify-between ">
+        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 dark:text-pink-50 mt-2 px-2 justify-between ">
           <div className="flex">
             <LocationMarkerIcon className="h-4 md:h-6" />
             <p>{location}</p>
@@ -112,7 +114,7 @@ function ProfileCard({ data }) {
         </div>
 
         {/* Site | Workplace */}
-        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 mt-2 px-2 justify-between ">
+        <div className="flex text-xs sm:text-sm md:text-base text-pink-900 dark:text-pink-50 mt-2 px-2 justify-between ">
           <div className="flex">
             <RssIcon className="h-4 md:h-6" />
             <Link href={blog || 'https://georgey.codes'}>
