@@ -30,7 +30,7 @@ function ProfileCard({ data }) {
 
   return (
     <div className="flex flex-col sm:flex-row justify-around sm:w-3/4 md:w-7/12 mt-6 px-2 pb-3 bg-pink-300 rounded-xl">
-      <div className="grid flex-grow place-items-center mt-4 sm:mt-0">
+      <div className="grid place-items-center md:w-96 mt-4 sm:mt-0">
         <Image
           className="rounded-full"
           alt={data.name}
@@ -44,7 +44,7 @@ function ProfileCard({ data }) {
         />
       </div>
 
-      <div className="flex text-center flex-col w-60 md:w-80 pr-2">
+      <div className="flex flex-grow flex-col w-60 md:w-80 pr-2">
         {/* determining the width is a skill! */}
         {/* Name | Date of Joining */}
         <div className="flex justify-between p-2">
